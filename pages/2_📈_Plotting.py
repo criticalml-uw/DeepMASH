@@ -4,7 +4,6 @@ import pandas as pd
 from import_data import f_get_Normalization
 import numpy as np
 # from 1_🌍_Adding_Logs import data
-
 # from pages.load_model import model
 
 from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
