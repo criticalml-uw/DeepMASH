@@ -4,7 +4,7 @@ import pandas as pd
 from import_data import f_get_Normalization
 import numpy as np
 
-from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
+# from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
 st.set_page_config(page_title="Uploading Patient Logs", page_icon="🌍")
 
 # st.title('NASH Project Interface')

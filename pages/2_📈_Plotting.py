@@ -6,22 +6,19 @@ import numpy as np
 # from 1_🌍_Adding_Logs import data
 # from pages.load_model import model
 
-from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
+# from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode, GridOptionsBuilder
 
 st.set_page_config(
     page_title="Plotting Predictions",
     page_icon="📈",
 )
 
-st.sidebar.success("Access interface functionality here.")
+# st.sidebar.success("Access interface functionality here.")
 
 # st.title('NASH Project Interface')
 st.markdown("<h2 style='text-align: center; color: black;'>Plotting Predictions</h2>", unsafe_allow_html=True)
 
-license_key = "For_Trialing_ag-Grid_Only-Not_For_Real_Development_Or_Production_Projects-Valid_Until-18_March_2021_[v2]_MTYxNjAyNTYwMDAwMA==948d8f51e73a17b9d78e03e12b9bf934"
-
-
-
+# license_key = "For_Trialing_ag-Grid_Only-Not_For_Real_Development_Or_Production_Projects-Valid_Until-18_March_2021_[v2]_MTYxNjAyNTYwMDAwMA==948d8f51e73a17b9d78e03e12b9bf934"
 
 
 if st.button("Generate Predictions"):
