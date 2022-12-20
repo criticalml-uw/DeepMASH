@@ -24,13 +24,12 @@ if uploaded_csv:
     view_uploaded_data = st.checkbox("View Uploaded Data")
     if view_uploaded_data:
         st.dataframe(patient_df.head(), use_container_width=True)
+    
+    st.markdown("### Step 2: Make Predictions")    
+    data_load_state = st.text('Making predictions...')
 
-
-
-
-
-st.markdown("### Step 2: Make Predictions")
-data_load_state = st.text('Loading data...')
+# Step 2: Making Predictions
+# data_load_state = st.text('Making predictions...')
 
 import tensorflow as tf
 import pandas as pd
@@ -187,21 +186,92 @@ data_load_state.text("Predictions Successfully Made!")
 
 
 st.markdown("### Step 3: Plot Predictions")
+import pandas as pd
+import numpy as np
+
+import matplotlib.pyplot as plt
+import matplotlib as mpl
+import itertools
+from itertools import cycle
+
+
+#import prediction data
+pred_risk_death = pd.read_csv('pred_risk_death.csv',index_col=0)
+pred_risk_transplant = pd.read_csv('pred_risk_transplant.csv',index_col=0)
+
+
+#specifiy patient 
+patient_1 = pd.DataFrame({
+   'transplant': pred_risk_transplant.iloc[0][0:12],
+   'death': pred_risk_death.iloc[0][0:12]
+   })
+
+marker2 = itertools.cycle(('o', 's')) 
+lines2 = itertools.cycle(("-","--"))
+
+
+x=range(0,12,1)
+
+
+mpl.rcParams['axes.prop_cycle'] = mpl.cycler(color=['#006400','#c1272d']) 
+
+fig,ax = plt.subplots(figsize=(10,10))
+
+#plt.plot(x,patientt1,"-o")
+ax.plot(x,patient_1['transplant'],
+         linestyle=next(lines2),
+         marker=next(marker2))
+
+ax.plot(x,patient_1['death'],
+         linestyle=next(lines2),
+         marker=next(marker2))
+
+ax.grid()
+fig.suptitle('Surrogate risk of death and transplant using DeepNash for sample patient #3',fontsize=30)
+ax.set_ylabel('Surrogate risks',fontsize=30)
+ax.set_xlabel('Time in months',fontsize=30)
+
+line_labels=["Transplant",'Death']
+ax.legend(line_labels, loc ='lower center', borderaxespad=0.1, ncol=6, labelspacing=0.,  prop={'size': 22},
+              bbox_to_anchor=(0.5, -0.2))
+
+plt.xticks(visible=False)
+plt.yticks(visible=False)
+
+fig.set_size_inches(15,12, forward=True)
+
+# Currently just for next year
+import plotly.express as px
+pl_fig = px.line(patient_1, x=patient_1.index, y=["transplant", "death"], title='Patient 1 Prediction',
+                 labels={
+                     "index": "Month",
+                     "value": "Risks",
+                 })
+st.plotly_chart(pl_fig, theme="streamlit", use_container_width=True)
+view_pred_df = st.checkbox("View Predictions")
+if view_pred_df:
+    st.dataframe(patient_1)
+
 
 
 # Download
 st.markdown("### Step 4: Download Results")
-st.download_button(
-    label="Download predicted patient outcome as CSV",
-    data=out_no_index,
-    file_name='patient_pred.csv',
-    mime='text/csv',
-)
+with open('pred_risk.csv') as pred_risk:
+    btn  = st.download_button(
+            label="Download Patient Prediction",
+            data=pred_risk,
+            file_name='pred_risk.csv',
+            mime='text/csv',
+            )
 
-with open("flower.png", "rb") as file:
+
+download_img_name = 'patient1.png'
+plt.savefig(download_img_name)
+with open(download_img_name, "rb") as img:
     btn = st.download_button(
             label="Download image",
-            data=file,
-            file_name="flower.png",
+            data=img,
+            file_name="patient1.png",
             mime="image/png"
           )
+    
