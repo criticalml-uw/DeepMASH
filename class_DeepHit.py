@@ -24,7 +24,7 @@ import tensorflow as tf
 import random
 
 from tf_slim import fully_connected as FC_Net
-# import utils_network as utils 
+import utils_network as utils 
 
 ### user-defined functions
 
