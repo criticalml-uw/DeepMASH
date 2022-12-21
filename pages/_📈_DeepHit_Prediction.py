@@ -3,8 +3,8 @@ from PIL import Image
 import pandas as pd
 
 st.set_page_config(
-    page_title="Welcome to our Interface",
-    page_icon="👋",
+    page_title="DeepHit",
+    page_icon="📈",
 )
 
 st.title('DeepHit – Patient Prediction')
