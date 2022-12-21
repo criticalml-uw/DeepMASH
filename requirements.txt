@@ -1,4 +1,4 @@
-utils
+plotly.express
 tf_slim
 streamlit
 keras==2.8.0
