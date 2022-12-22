@@ -1,6 +1,7 @@
 import streamlit as st
 
 st.set_page_config(
+    page_title="About DeepNASH",
     page_icon="👩‍💻",
     # menu_items={
     # 'Get Help': 'https://www.extremelycoolapp.com/help',
@@ -9,7 +10,7 @@ st.set_page_config(
     # }
 )
 
-st.title("NASH Project")
+st.title("DeepNASH Project")
 
 st.markdown(
     """
