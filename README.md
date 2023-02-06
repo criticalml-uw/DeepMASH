@@ -1,4 +1,9 @@
-# DeepNASH:  Competing Risk Neural Network Model to Forecast NASH Patient Trajectories on the Liver Transplant Waitlist
+# DeepNASH
+
+A Competing Risk Neural Network Model For Forecasting NASH Patient Trajectories on the Liver Transplant Waitlist
+
+
+## Description 
 DeepNASH has been trained using SRTR data of NASH patients at the time of listing and the DeepHit model structure to predict the monthly risk of dying on the death and receiving a liver transplant. 
 
 ## Models and Data 
