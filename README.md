@@ -15,9 +15,8 @@ The processing of the data was done using [data_processing.py](https://github.co
 The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use with the following files [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) data in the template format. 
 
 ### Option 2: Streamlit Dashboard 
-The model has been implemented in Streamlit with functions of downloading data templates, uploading patient data as *.csv* files, and visualizing the risk forecast. 
-
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deepnash.streamlit.app/)
+The model has been implemented in Streamlit with functions of downloading data templates, uploading patient data as *.csv* files, and visualizing the risk forecast. 
 
 # 
 
