@@ -12,7 +12,7 @@ The processing of the data was done using [data_processing.py](https://github.co
 ## Using the model 
 
 ### Option 1: Use trained model from scripts
-The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use with the following files [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) data in the template format. 
+The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use with [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) and data in the template format. 
 
 ### Option 2: Streamlit Dashboard 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deepnash.streamlit.app/)
