@@ -17,7 +17,7 @@ The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main
 ### Option 2: Streamlit Dashboard 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deepnash.streamlit.app/)
 
-The model has been implemented in Streamlit with functions of downloading the data template, uploading patient data as *.csv* files, and visualizing forecasted risk trajectories by DeepNASH. 
+The model has been implemented in Streamlit with functions of downloading the data template, uploading patient data as *.csv* files, and visualizing the forecasted risk trajectories by DeepNASH. 
 
 # 
 
