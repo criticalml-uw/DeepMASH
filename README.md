@@ -4,7 +4,7 @@ A Competing Risk Neural Network Model For Forecasting NASH Patient Trajectories 
 
 
 ## Model description 
-DeepNASH has been trained using SRTR data of NASH patients at the time of listing and the DeepHIT model structure to predict the monthly risk of dying on the death and receiving a liver transplant[[1]](#1).
+DeepNASH has been trained using SRTR data of NASH patients at the time of listing and the **DeepHIT** model structure to predict the monthly risk of dying on the death and receiving a liver transplant [[1]](#1).
 
 ## Data requirement for DeepNASH
 The processing of the data was done using [data_processing.py](https://github.com/criticalml-uw/DeepNASH/blob/main/data/data_processing.py) where the categeorizaiton of features based on clinical definitions, missing data imputation, and one hot encoding were done. Sample data can be viewed here [sample data](https://github.com/criticalml-uw/DeepNASH/blob/main/data/sample_test_data.csv). The template of input features,[data upload template](https://github.com/criticalml-uw/DeepNASH/blob/main/data/test_data_template.csv), can be viewed and downloaded to be filled and served as input for the model. 
