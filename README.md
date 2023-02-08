@@ -8,6 +8,12 @@ DeepNASH has been trained using SRTR data of NASH patients at the time of listin
 
 ![DeepNASH](schematic.pdf)
 
+<object data="http://yoursite.com/the.pdf](https://github.com/criticalml-uw/DeepNASH/blob/main/schematic.pdf" type="application/pdf" width="700px" height="700px">
+    <embed src="http://yoursite.com/the.pdf](https://github.com/criticalml-uw/DeepNASH/blob/main/schematic.pdf">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="http://yoursite.com/the.pdf](https://github.com/criticalml-uw/DeepNASH/blob/main/schematic.pdf">Download PDF</a>.</p>
+    </embed>
+</object>
+
 ## Data requirement for DeepNASH
 The processing of the data was done using [data_processing.py](https://github.com/criticalml-uw/DeepNASH/blob/main/data/data_processing.py) where the categeorizaiton of features based on clinical definitions, missing data imputation, and one hot encoding were done. Sample data can be viewed here [sample data](https://github.com/criticalml-uw/DeepNASH/blob/main/data/sample_test_data.csv). The template of input features,[data upload template](https://github.com/criticalml-uw/DeepNASH/blob/main/data/test_data_template.csv), can be viewed and downloaded to be filled and served as input for the model. 
 
