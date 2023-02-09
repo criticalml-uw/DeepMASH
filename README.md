@@ -26,5 +26,15 @@ The processing of the SRTR data (CAND_LIIN dataset) can be done using [data_proc
 The model has been implemented in Streamlit with functions of downloading the data template, uploading patient data as *.csv* files, and visualizing the forecasted risk trajectories by DeepNASH. 
 
 ### Option 2: Use trained model from scripts
-The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use with [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) and data in the template format. 
+The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use with [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) and data in the template format.
+
+### For developers
+To run the app on your own server, first install the packages with the command
+
+```pip install -r requirements.txt```
+
+Then use the following command to launch the streamlit app
+```
+streamlit run DeepHit_Prediction.py
+```
 
