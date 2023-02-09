@@ -141,15 +141,15 @@ with tab_sample:
 
     out_no_index = out_df.iloc[: , 1:]
 
-    out_no_index.to_csv('pred_risk.csv')
+    out_no_index.to_csv('./data/pred_risk.csv')
 
     pred_death_risk = out_no_index.iloc[::2, :].reset_index()
     pred_death_risk= pred_death_risk.drop(['index'],axis=1)
     pred_transplant_risk = out_no_index.iloc[1:, :]
     pred_transplant_risk = pred_transplant_risk.iloc[::2, :].reset_index()
     pred_transplant_risk= pred_transplant_risk.drop(['index'],axis=1)
-    pred_death_risk.to_csv("pred_risk_death.csv")
-    pred_transplant_risk.to_csv("pred_risk_transplant.csv")
+    pred_death_risk.to_csv("./data/pred_risk_death.csv")
+    pred_transplant_risk.to_csv("./data/pred_risk_transplant.csv")
 
     # st.success('Predictions made!', icon="✅")
 
@@ -168,8 +168,8 @@ with tab_sample:
 
 
     # Import prediction data
-    pred_risk_death = pd.read_csv('pred_risk_death.csv',index_col=0)
-    pred_risk_transplant = pd.read_csv('pred_risk_transplant.csv',index_col=0)
+    pred_risk_death = pd.read_csv('./data/pred_risk_death.csv',index_col=0)
+    pred_risk_transplant = pd.read_csv('./data/pred_risk_transplant.csv',index_col=0)
 
 
     # Specifiy patient 
@@ -233,7 +233,7 @@ with tab_sample:
 
 
     # Download
-    with open('pred_risk.csv') as pred_risk:
+    with open('./data/pred_risk.csv') as pred_risk:
         btn  = st.download_button(
                 label="Download Patient Prediction",
                 data=pred_risk,
@@ -242,13 +242,13 @@ with tab_sample:
                 )
 
 
-    download_img_name = 'patient1.png'
+    download_img_name = 'patient.png'
     plt.savefig(download_img_name)
     with open(download_img_name, "rb") as img:
         btn = st.download_button(
                 label="Download image",
                 data=img,
-                file_name="patient1.png",
+                file_name="patient.png",
                 mime="image/png"
             )
             
@@ -403,15 +403,15 @@ with tab_customize:
 
         out_no_index = out_df.iloc[: , 1:]
 
-        out_no_index.to_csv('pred_risk.csv')
+        out_no_index.to_csv('./data/pred_risk.csv')
 
         pred_death_risk = out_no_index.iloc[::2, :].reset_index()
         pred_death_risk= pred_death_risk.drop(['index'],axis=1)
         pred_transplant_risk = out_no_index.iloc[1:, :]
         pred_transplant_risk = pred_transplant_risk.iloc[::2, :].reset_index()
         pred_transplant_risk= pred_transplant_risk.drop(['index'],axis=1)
-        pred_death_risk.to_csv("pred_risk_death.csv")
-        pred_transplant_risk.to_csv("pred_risk_transplant.csv")
+        pred_death_risk.to_csv("./data/pred_risk_death.csv")
+        pred_transplant_risk.to_csv("./data/pred_risk_transplant.csv")
 
         # st.success('Predictions made!', icon="✅")
 
@@ -430,8 +430,8 @@ with tab_customize:
 
 
         #import prediction data
-        pred_risk_death = pd.read_csv('pred_risk_death.csv', index_col=0)
-        pred_risk_transplant = pd.read_csv('pred_risk_transplant.csv', index_col=0)
+        pred_risk_death = pd.read_csv('./data/pred_risk_death.csv', index_col=0)
+        pred_risk_transplant = pd.read_csv('./data/pred_risk_transplant.csv', index_col=0)
 
 
         #specifiy patient 
@@ -499,7 +499,7 @@ with tab_customize:
 
         # Download
         st.markdown("### Step 4: Download Results")
-        with open('pred_risk.csv') as pred_risk:
+        with open('./data/pred_risk.csv') as pred_risk:
             btn  = st.download_button(
                     label="Download Patient Prediction",
                     data=pred_risk,
@@ -508,13 +508,13 @@ with tab_customize:
                     key="download-custom-data")
 
 
-        download_img_name = 'patient1.png'
+        download_img_name = 'patient.png'
         plt.savefig(download_img_name)
         with open(download_img_name, "rb") as img:
             btn = st.download_button(
                     label="Download image",
                     data=img,
-                    file_name="patient1.png",
+                    file_name="patient.png",
                     mime="image/png",
                     key="download-img-custom-data"
                 )
