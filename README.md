@@ -33,6 +33,6 @@ To run the app on your own server, first install the packages with the command
 
 ```pip install -r requirements.txt```
 
-Then use the following command to launch the streamlit app
+Then use the following command to launch the streamlit app on your localhost
 
 ```streamlit run DeepHit_Prediction.py```
