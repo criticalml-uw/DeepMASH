@@ -8,21 +8,13 @@ st.set_page_config(
 )
 
 st.title('DeepHit – Patient Prediction')
-# container_upload = st.container()
 
 tab_sample, tab_customize = st.tabs(["Sample dataset", "Upload"])
 
 with tab_sample:
-    patient_df = pd.read_csv("sample_test_data.csv", index_col=0)    
-    # view_data = st.checkbox("View Data")
-    # if view_data:
-    #     st.dataframe(patient_df.head(), use_container_width=True)
-    
-    # st.markdown("### Step 2: Make Predictions")    
+    patient_df = pd.read_csv("./data/sample_test_data.csv", index_col=0)
+        
     data_load_state = st.text('Making predictions...')
-
-    # Step 2: Making Predictions
-    # data_load_state = st.text('Making predictions...')
 
     import tensorflow as tf
     import pandas as pd
@@ -115,17 +107,6 @@ with tab_sample:
 
     tf.compat.v1.reset_default_graph()
 
-    #imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
-
-    #with tf.compat.v1.Session() as sess:
-        # restore the saved vairable
-        
-    #    imported_graph.restore(sess,'models/checkpoint')
-        
-    #    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
-
-    tf.compat.v1.reset_default_graph()
-
     config = tf.compat.v1.ConfigProto
 
     sess = tf.compat.v1.Session()
@@ -142,8 +123,6 @@ with tab_sample:
 
     ##########################################
     # import data and predict
-
-    # input_data = 'data/sample_test_data.csv' 
 
     get_x = lambda df: (df
                         .drop(columns=["event","wl_to_event","PX_ID"])
@@ -277,7 +256,7 @@ with tab_customize:
     st.markdown("### Step 1: Upload Data")
 
     upload_csv_msg = st.markdown("""You need to upload a csv file. """)
-    with open('sample_test_data.csv') as sample_input:
+    with open('./data/data_template.csv') as sample_input:
         btn  = st.download_button(
                 label="Download input template",
                 data=sample_input,
@@ -391,17 +370,6 @@ with tab_customize:
 
         tf.compat.v1.reset_default_graph()
 
-        #imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
-
-        #with tf.compat.v1.Session() as sess:
-            # restore the saved vairable
-            
-        #    imported_graph.restore(sess,'models/checkpoint')
-            
-        #    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
-
-        tf.compat.v1.reset_default_graph()
-
         config = tf.compat.v1.ConfigProto
 
         sess = tf.compat.v1.Session()
@@ -418,9 +386,6 @@ with tab_customize:
 
         ##########################################
         # import data and predict
-
-        # input_data = 'data/sample_test_data.csv' 
-
         get_x = lambda df: (df
                             .drop(columns=["event","wl_to_event","PX_ID"])
                             .values.astype('float32'))

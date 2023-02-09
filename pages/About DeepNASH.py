@@ -31,11 +31,3 @@ st.markdown(
     
     """
 )
-
-    
-    # **DeepHit Model**
-    
-    # Yingji Sun, Gopika Punchhi, Sirisha Rambhatla, Mamatha Bhat
-    
-    # **Application Deployment**
-
