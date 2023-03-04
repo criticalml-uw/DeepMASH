@@ -154,7 +154,14 @@ with tab_sample:
     # st.success('Predictions made!', icon="✅")
 
     data_load_state.text("Predictions Successfully Made!")
-
+    
+    st.markdown("""
+                
+                Predictions are made with `sample_test_data.csv` in our 
+                [code repo](https://github.com/criticalml-uw/DeepNASH/blob/main/data/sample_test_data.csv).
+                
+                If you would like to know more information, please refer to the actual event 
+                and time in the patient examples in our paper.""")
 
 
     st.markdown("#### Plot Predictions")
@@ -277,8 +284,7 @@ with tab_customize:
         data_load_state = st.text('Making predictions...')
 
         # Step 2: Making Predictions
-        # data_load_state = st.text('Making predictions...')
-
+        
         import tensorflow as tf
         import pandas as pd
         import numpy as np
