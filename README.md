@@ -35,4 +35,4 @@ To run the web app on your own server, first install the packages with the comma
 
 Then use the following command to launch the streamlit app on your localhost
 
-```streamlit run About_DeepNASH.py```
+```streamlit run DeepHit_Prediction.py```
