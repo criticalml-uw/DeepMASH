@@ -119,27 +119,6 @@ class FeatureExtractor():
         out = pd.concat([out, 
             pd.get_dummies(candata["CAN_ABO"], prefix="CAN_ABO")], axis=1)
         
-        #race and ethnicity
-        out = pd.concat([out, 
-            processor.race_binary(candata["CAN_RACE_SRTR"])], axis=1)
-        out = pd.concat([out, 
-            processor.ethnicity_binary(candata["CAN_ETHNICITY_SRTR"])], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_AMERICAN_INDIAN"]], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_ASIAN"]], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_BLACK_AFRICAN_AMERICAN"]], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_HISPANIC_LATINO"]], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_NATIVE_HAWAIIAN"]], axis=1)
-        out = pd.concat([out, candata["CAN_RACE_WHITE"]], axis=1)
-        
-        #education 
-        out = pd.concat([out,
-            processor.ordinal_meanpadding(candata["CAN_EDUCATION"], {996, 998})], axis=1)
-        
-        #demographics
-        out = pd.concat([out, 
-            processor.yesnounknown_to_numeric(candata["CAN_WORK_INCOME"].fillna('U'))], axis=1)
-        out = pd.concat([out, 
-            pd.get_dummies(candata["CAN_SECONDARY_PAY"], prefix="CAN_SECONDARY_PAY")], axis=1)
         
         #medical/physical condition
         #continous, fill na with mean
@@ -150,8 +129,6 @@ class FeatureExtractor():
         
         
         #categorical 
-        out = pd.concat([out, 
-            pd.get_dummies(candata["CAN_EMPL_STAT"], prefix="CAN_EMPL_STAT")], axis=1)
         out = pd.concat([out, 
             pd.get_dummies(candata["CAN_FUNCTN_STAT"], prefix="CAN_FUNCTN_STAT")], axis=1)
         out = pd.concat([out, candata["CAN_MED_COND"]], axis=1)
@@ -170,12 +147,6 @@ class FeatureExtractor():
             processor.yesnounknown_to_numeric(candata["CAN_PREV_ABDOM_SURG"])], axis=1)
         out = pd.concat([out, candata["CAN_VENTILATOR"]], axis=1)
         
-       
-        #diagnosis
-        out = pd.concat([out,
-            pd.get_dummies(candata["CAN_DGN"], prefix="CAN_DGN")],axis=1)
-        out = pd.concat([out,
-            pd.get_dummies(candata["CAN_DGN2"], prefix="CAN_DGN2")],axis=1)
         
         #comorbidities
         out = pd.concat([out,
@@ -273,15 +244,9 @@ class FeatureProcessor():
                 return np.nan
             return elem
         return col.apply(apply_ordinal).fillna(col.mean())
-    
-    def race_binary(self, col):
-        return col.apply(lambda x: 1 if x == b'WHITE' else 0)
-
-    def ethnicity_binary(self, col):
-        return col.apply(lambda x : 1 if x == b'LATINO' else 0)
 
     def gender_binary(self, col):
-        return col.apply(lambda x : 1 if x == b'F' else 0)       
+        return col.apply(lambda x : 1 if x == 'F' else 0)       
 
 
 ##extract static features
@@ -297,9 +262,19 @@ longi_features['CANHX_BILI']=longi_features['CANHX_BILI']*17.1
 longi_features['CANHX_SERUM_CREAT']=longi_features['CANHX_SERUM_CREAT']*88.42
 longi_features['CANHX_ALBUMIN']=longi_features['CANHX_ALBUMIN']*10
 
-
 ##combine variables and save
 df= pd.merge(static_features, longi_features,on="PX_ID", how = "left")
-df.to_csv('processed_data.csv', index=False)
+
+static_subset= df[['PX_ID','CAN_AGE_AT_LISTING', 'CAN_GENDER', 'CAN_ABO_A',
+       'CAN_ABO_AB', 'CAN_ABO_B', 'CAN_ABO_O', 'CAN_WGT_KG', 'CAN_BMI',
+       'CAN_INIT_ACT_STAT_CD', 
+       'CAN_MED_COND','CAN_FUNCTN_STAT_1.0',
+       'CAN_FUNCTN_STAT_2.0', 'CAN_FUNCTN_STAT_3.0',
+       'CANHX_ALBUMIN','CANHX_BILI',
+       'CANHX_INR','CANHX_SERUM_CREAT',
+       'CANHX_SERUM_SODIUM',                   
+       'event','wl_to_event']] # to match the list of variables shared with UHN dataset 
+
+static_subset.to_csv('processed_data.csv', index=False)
 
 print('Complete')
