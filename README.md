@@ -1,6 +1,4 @@
-# DeepNASH
-
-A Competing Risk Neural Network Model For Forecasting MASH Patient Trajectories on the Liver Transplant Waitlist
+# Forecasting MASH Patient Trajectories on the Liver Transplant Waitlist using a Neural Network-based Competing Risk Analysis
 
 
 ## Model description 
@@ -8,7 +6,8 @@ DeepHit for MASH has been trained using SRTR data of MASH patients at the time o
 
 Authors: Gopika Punchhi, Yingji Sun, Sumeet K. Asrani, Sirisha Rambhatla, Mamatha Bhat
 
-* Reference: G. Punchhi, Y. Sun, S. K. Asrani, S. Rambhatla, M. Bhat, "DeepNASH: A Competing Risk Neural Network Model For Forecasting NASH Patient Trajectories on the Liver Transplant Waitlist"
+* Reference: G. Punchhi, Y. Sun, S. K. Asrani, S. Rambhatla, M. Bhat, "Forecasting MASH Patient Trajectories on the Liver Transplant Waitlist using a Neural Network-based Competing Risk Analysis
+"
 
 <a id="1">[1]</a> 
 C. Lee, W. R. Zame, J. Yoon, M. van der Schaar, "DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks," AAAI Conference on Artificial Intelligence (AAAI), 2018
@@ -22,7 +21,7 @@ The processing of the SRTR data (CAND_LIIN dataset) can be done using [data_proc
 ### Option 1: Streamlit Dashboard 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://deepnash.streamlit.app/)
 
-The model has been implemented in a web app for direct use from browsers. The Streamlit web app include functions such as downloading the data template for reference, uploading patient data as *.csv* files, and downloading the visualization and forecasted risk trajectories plots predicted with DeepNASH. 
+The model has been implemented in a web app for direct use from browsers. The Streamlit web app include functions such as downloading the data template for reference, uploading patient data as *.csv* files, and downloading the visualization and forecasted risk trajectories plots predicted with DeepHit for MASH. 
 
 ### Option 2: Use trained model from scripts
 The [trained DeepHit model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use. If you need help with importing the model files in tensorflow, check our code in [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) for reference.
