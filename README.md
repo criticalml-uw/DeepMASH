@@ -13,7 +13,7 @@ Authors: Gopika Punchhi, Yingji Sun, Sumeet K. Asrani, Sirisha Rambhatla, Mamath
 C. Lee, W. R. Zame, J. Yoon, M. van der Schaar, "DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks," AAAI Conference on Artificial Intelligence (AAAI), 2018
 
 
-## Data requirement for DeepNASH
+## Data requirement for DeepHit for MASH 
 The processing of the SRTR data (CAND_LIIN dataset) can be done using [data_processing.py](https://github.com/criticalml-uw/DeepNASH/blob/main/model_scripts/data_processing.py) with the re-categeorizaiton of features based on clinical definitions, missing data imputation, and one hot encoding. Sample data post-processing can be viewed here [sample data](https://github.com/criticalml-uw/DeepNASH/blob/main/data/sample_patient_data.csv). The template of input features,[data upload template](https://github.com/criticalml-uw/DeepNASH/blob/main/data/variable_template.csv), can be viewed and downloaded to be filled and served as input for the model. 
 
 ## Using the model 
