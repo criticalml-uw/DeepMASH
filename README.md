@@ -1,10 +1,10 @@
 # DeepNASH
 
-A Competing Risk Neural Network Model For Forecasting NASH Patient Trajectories on the Liver Transplant Waitlist
+A Competing Risk Neural Network Model For Forecasting MASH Patient Trajectories on the Liver Transplant Waitlist
 
 
 ## Model description 
-DeepNASH has been trained using SRTR data of NASH patients at the time of listing and the **DeepHIT** model structure to predict the monthly risk of dying on the death and receiving a liver transplant [[1]](#1).
+DeepHit for MASH has been trained using SRTR data of MASH patients at the time of listing and the **DeepHIT** model structure to predict the monthly risk of dying on the death and receiving a liver transplant [[1]](#1).
 
 Authors: Gopika Punchhi, Yingji Sun, Sumeet K. Asrani, Sirisha Rambhatla, Mamatha Bhat
 
@@ -26,7 +26,7 @@ The processing of the SRTR data (CAND_LIIN dataset) can be done using [data_proc
 The model has been implemented in a web app for direct use from browsers. The Streamlit web app include functions such as downloading the data template for reference, uploading patient data as *.csv* files, and downloading the visualization and forecasted risk trajectories plots predicted with DeepNASH. 
 
 ### Option 2: Use trained model from scripts
-The [trained DeepNASH model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use. If you need help with importing the model files in tensorflow, check our code in [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) for reference.
+The [trained DeepHit model](https://github.com/criticalml-uw/DeepNASH/tree/main/model/model) is availble for use. If you need help with importing the model files in tensorflow, check our code in [DeepHit_Prediction.py](https://github.com/criticalml-uw/DeepNASH/blob/main/DeepHit_Prediction.py) for reference.
 
 ### Option 3: For developers
 To run the web app on your own server, first install the packages with the command
