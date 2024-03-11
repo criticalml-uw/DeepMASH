@@ -12,7 +12,7 @@ st.title('DeepHit – Patient Prediction')
 tab_sample, tab_customize = st.tabs(["Sample dataset", "Upload"])
 
 with tab_sample:
-    patient_df = pd.read_csv("./data/sample_test_data.csv", index_col=0)
+    patient_df = pd.read_csv("./data/sample_patient_data.csv", index_col=0)
         
     data_load_state = st.text('Making predictions...')
 
