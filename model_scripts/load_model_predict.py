@@ -72,7 +72,7 @@ beta                        = in_parser['beta']  #for ranking loss
 
 # Create the dictionaries 
 # For the input settings
-input_dims                  = { 'x_dim'         : 96,
+input_dims                  = { 'x_dim'         : 26,
                                 'num_Event'     : 2,
                                 'num_Category'  : 143}
 
@@ -88,7 +88,7 @@ network_settings            = { 'h_dim_shared'         : h_dim_shared,
 
 tf.compat.v1.reset_default_graph()
 
-#imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
+#imported_graph = tf.compat.v1.train.import_meta_graph('model/model/model_itr_0.meta')
 
 #with tf.compat.v1.Session() as sess:
     # restore the saved vairable
