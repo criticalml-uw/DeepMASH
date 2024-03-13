@@ -116,7 +116,7 @@ saver.restore(sess, 'model/model/model_itr_0')
 ##########################################
 # import data and predict
 
-processed_data = pd.read_csv('data/NASH_test_df.csv', index_col=0)
+processed_data = pd.read_csv('data/sample_processed_data.csv', index_col=0)
 
 get_x = lambda df: (df
                     .drop(columns=["event","wl_to_event","PX_ID"])
