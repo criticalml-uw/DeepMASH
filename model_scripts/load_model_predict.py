@@ -72,7 +72,7 @@ beta                        = in_parser['beta']  #for ranking loss
 
 # Create the dictionaries 
 # For the input settings
-input_dims                  = { 'x_dim'         : 96,
+input_dims                  = { 'x_dim'         : 26,
                                 'num_Event'     : 2,
                                 'num_Category'  : 143}
 
@@ -88,7 +88,7 @@ network_settings            = { 'h_dim_shared'         : h_dim_shared,
 
 tf.compat.v1.reset_default_graph()
 
-#imported_graph = tf.compat.v1.train.import_meta_graph('model/model_itr_0.meta')
+#imported_graph = tf.compat.v1.train.import_meta_graph('model/model/model_itr_0.meta')
 
 #with tf.compat.v1.Session() as sess:
     # restore the saved vairable
@@ -116,7 +116,7 @@ saver.restore(sess, 'model/model/model_itr_0')
 ##########################################
 # import data and predict
 
-processed_data = pd.read_csv('data/NASH_test_df.csv', index_col=0)
+processed_data = pd.read_csv('data/sample_processed_data.csv', index_col=0)
 
 get_x = lambda df: (df
                     .drop(columns=["event","wl_to_event","PX_ID"])
