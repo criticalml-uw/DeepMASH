@@ -26,11 +26,11 @@ st.markdown(
     """
 )
 
-image_death = Image.open('feature_importance_death.png')
-image_transplant = Image.open('feature_importance_transplant.png')
+# image_death = Image.open('feature_importance_death.png')
+# image_transplant = Image.open('feature_importance_transplant.png')
 
-st.image(image_death, caption='Feature Importance Graph for Patient Death')
-st.image(image_transplant, caption='Feature Importance Graph for Patient Transplant')
+# st.image(image_death, caption='Feature Importance Graph for Patient Death')
+# st.image(image_transplant, caption='Feature Importance Graph for Patient Transplant')
 
 st.markdown(
     """
