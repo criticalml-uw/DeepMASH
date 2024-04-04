@@ -1,7 +1,14 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
+import tensorflow as tf
+import pandas as pd
+import numpy as np
 
+from class_DeepHit import Model_DeepHit
+from tf_slim import fully_connected as FC_Net
+from import_data import f_get_Normalization
+    
 st.set_page_config(
     page_title="DeepHit",
     page_icon="📈",
@@ -12,17 +19,9 @@ st.title('DeepHit – Patient Prediction')
 tab_sample, tab_customize = st.tabs(["Sample dataset", "Upload"])
 
 with tab_sample:
-    patient_df = pd.read_csv("./data/sample_patient_data.csv", index_col=0)
+    processed_patient_df = pd.read_csv("./data/sample_processed_data.csv", index_col=0)
         
     data_load_state = st.text('Making predictions...')
-
-    import tensorflow as tf
-    import pandas as pd
-    import numpy as np
-
-    from class_DeepHit import Model_DeepHit
-    from tf_slim import fully_connected as FC_Net
-    from import_data import f_get_Normalization
 
 
     ####################################
@@ -91,7 +90,7 @@ with tab_sample:
 
     # Create the dictionaries 
     # For the input settings
-    input_dims                  = { 'x_dim'         : 96,
+    input_dims                  = { 'x_dim'         : 26,
                                     'num_Event'     : 2,
                                     'num_Category'  : 143}
 
@@ -104,6 +103,17 @@ with tab_sample:
                                     'initial_W'         : initial_W }
 
     # Create the DeepHit network architecture
+
+    tf.compat.v1.reset_default_graph()
+
+    #imported_graph = tf.compat.v1.train.import_meta_graph('model/model/model_itr_0.meta')
+
+    #with tf.compat.v1.Session() as sess:
+        # restore the saved vairable
+        
+    #    imported_graph.restore(sess,'models/checkpoint')
+        
+    #    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
 
     tf.compat.v1.reset_default_graph()
 
@@ -124,11 +134,13 @@ with tab_sample:
     ##########################################
     # import data and predict
 
+    processed_data = pd.read_csv('data/sample_processed_data.csv', index_col=0)
+
     get_x = lambda df: (df
                         .drop(columns=["event","wl_to_event","PX_ID"])
                         .values.astype('float32'))
 
-    data = np.asarray(get_x(patient_df))
+    data = np.asarray(get_x(processed_data))
 
     data = f_get_Normalization(data, 'standard')
 
@@ -141,15 +153,16 @@ with tab_sample:
 
     out_no_index = out_df.iloc[: , 1:]
 
-    out_no_index.to_csv('./data/pred_risk.csv')
+    out_no_index.to_csv('pred_risk.csv')
+
 
     pred_death_risk = out_no_index.iloc[::2, :].reset_index()
     pred_death_risk= pred_death_risk.drop(['index'],axis=1)
     pred_transplant_risk = out_no_index.iloc[1:, :]
     pred_transplant_risk = pred_transplant_risk.iloc[::2, :].reset_index()
     pred_transplant_risk= pred_transplant_risk.drop(['index'],axis=1)
-    pred_death_risk.to_csv("./data/pred_risk_death.csv")
-    pred_transplant_risk.to_csv("./data/pred_risk_transplant.csv")
+    pred_death_risk.to_csv("pred_risk_death.csv")
+    pred_transplant_risk.to_csv("pred_risk_transplant.csv")
 
     # st.success('Predictions made!', icon="✅")
 
@@ -211,7 +224,7 @@ with tab_sample:
             marker=next(marker2))
 
     ax.grid()
-    fig.suptitle('Surrogate risk of death and transplant using DeepNash for sample patient #3',fontsize=30)
+    fig.suptitle('Surrogate risk of death and transplant using DeepNash for sample patient #3', fontsize=30)
     ax.set_ylabel('Surrogate risks',fontsize=30)
     ax.set_xlabel('Time in months',fontsize=30)
 
@@ -263,7 +276,7 @@ with tab_customize:
     st.markdown("### Step 1: Upload Data")
 
     upload_csv_msg = st.markdown("""You need to upload a csv file. """)
-    with open('./data/data_template.csv') as sample_input:
+    with open('./data/sample_processed_data.csv') as sample_input:
         btn  = st.download_button(
                 label="Download input template",
                 data=sample_input,
@@ -273,27 +286,18 @@ with tab_customize:
     uploaded_csv = st.file_uploader('Choose a file containing patient logs: ')
 
     if uploaded_csv:
-        patient_df = pd.read_csv(uploaded_csv, index_col=0)
+        processed_patient_df = pd.read_csv(uploaded_csv, index_col=0)
         upload_csv_msg.text = "Data successfully uploaded"
         
         view_uploaded_data = st.checkbox("View Uploaded Data")
         if view_uploaded_data:
-            st.dataframe(patient_df.head(), use_container_width=True)
+            st.dataframe(processed_patient_df.head(), use_container_width=True)
         
         st.markdown("### Step 2: Make Predictions")    
         data_load_state = st.text('Making predictions...')
 
         # Step 2: Making Predictions
         
-        import tensorflow as tf
-        import pandas as pd
-        import numpy as np
-
-        from class_DeepHit import Model_DeepHit
-        from tf_slim import fully_connected as FC_Net
-        from import_data import f_get_Normalization
-
-
         ####################################
         # Load model 
 
@@ -360,7 +364,7 @@ with tab_customize:
 
         # Create the dictionaries 
         # For the input settings
-        input_dims                  = { 'x_dim'         : 96,
+        input_dims                  = { 'x_dim'         : 26,
                                         'num_Event'     : 2,
                                         'num_Category'  : 143}
 
@@ -373,6 +377,17 @@ with tab_customize:
                                         'initial_W'         : initial_W }
 
         # Create the DeepHit network architecture
+
+        tf.compat.v1.reset_default_graph()
+
+        #imported_graph = tf.compat.v1.train.import_meta_graph('model/model/model_itr_0.meta')
+
+        #with tf.compat.v1.Session() as sess:
+            # restore the saved vairable
+            
+        #    imported_graph.restore(sess,'models/checkpoint')
+            
+        #    model = Model_DeepHit(sess, "DeepHit", input_dims, network_settings)
 
         tf.compat.v1.reset_default_graph()
 
@@ -392,11 +407,14 @@ with tab_customize:
 
         ##########################################
         # import data and predict
+
+        processed_data = pd.read_csv('data/sample_processed_data.csv', index_col=0)
+
         get_x = lambda df: (df
                             .drop(columns=["event","wl_to_event","PX_ID"])
                             .values.astype('float32'))
 
-        data = np.asarray(get_x(patient_df))
+        data = np.asarray(get_x(processed_data))
 
         data = f_get_Normalization(data, 'standard')
 
@@ -409,15 +427,17 @@ with tab_customize:
 
         out_no_index = out_df.iloc[: , 1:]
 
-        out_no_index.to_csv('./data/pred_risk.csv')
+        out_no_index.to_csv('pred_risk.csv')
+
 
         pred_death_risk = out_no_index.iloc[::2, :].reset_index()
         pred_death_risk= pred_death_risk.drop(['index'],axis=1)
         pred_transplant_risk = out_no_index.iloc[1:, :]
         pred_transplant_risk = pred_transplant_risk.iloc[::2, :].reset_index()
         pred_transplant_risk= pred_transplant_risk.drop(['index'],axis=1)
-        pred_death_risk.to_csv("./data/pred_risk_death.csv")
-        pred_transplant_risk.to_csv("./data/pred_risk_transplant.csv")
+        pred_death_risk.to_csv("pred_risk_death.csv")
+        pred_transplant_risk.to_csv("pred_risk_transplant.csv")
+    
 
         # st.success('Predictions made!', icon="✅")
 
@@ -487,8 +507,8 @@ with tab_customize:
 
         # Currently just for next year
         import plotly.express as px
-        st.markdown("Sample Plot for Patient 1")
-        pl_fig = px.line(patient_1, x=patient_1.index, y=["transplant", "death"], title='Patient 1 Prediction',
+        st.markdown(f"Sample Plot for Patient {selected_patient}")
+        pl_fig = px.line(patient_1, x=patient_1.index, y=["transplant", "death"], title=f'Patient {selected_patient} Prediction',
                         labels={
                             "index": "Month",
                             "value": "Risks",
